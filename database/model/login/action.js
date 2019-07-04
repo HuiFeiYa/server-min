@@ -7,11 +7,19 @@ async function findByUnionid(unionid) {
     where: { unionid }
   })
 }
+async function findOne(key, value) {
+  return Model.findOne({
+    where: {
+      [key]: value
+    }
+  })
+}
 async function insertLogin(params) {
   return Model.create(params)
 }
 module.exports = {
   findAll,
   insertLogin,
-  findByUnionid
+  findByUnionid,
+  findOne
 }
