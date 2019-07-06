@@ -24,8 +24,8 @@ module.exports = {
       user: 'root',
       host: '118.31.127.58',
       ref: 'origin/master',
-      repo: 'git@github.com:guanwanxiao/node-service.git',
-      path: '/repo/source',
+      repo: 'git@github.com:guanwanxiao/server-min.git',
+      path: '/repo/min',
       'post-deploy':
         'npm install && pm2 reload ecosystem.config.js --env production'
     }
