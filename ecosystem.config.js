@@ -21,7 +21,7 @@ module.exports = {
     production: {
       user: 'root',
       host: '118.31.127.58',
-      ref: 'origin/master',
+      ref: 'origin/dev',
       <!-- github地址 使用ssh -->
       repo: 'git@github.com:guanwanxiao/recipe-found.git',
       <!-- 存放的服务器路径 -->
