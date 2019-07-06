@@ -7,6 +7,7 @@ const {
   findAllStep,
   findByName
 } = require('../database/model/stepToday/actions')
+const { findAllPhoto } = require('../database/model/photo/action')
 const { backClient } = require('./utils/index')
 const { getSession } = require('./business')
 const WXBizDataCrypt = require('./utils/WXBizDataCrypt')
@@ -53,8 +54,24 @@ async function todayStep(ctx) {
   })
   backClient(ctx, all)
 }
+
+// 照片分享
+async function getPhoto(ctx) {
+  const { pageIndex, size } = ctx.request.body
+  const all = await findAllPhoto()
+  const list = all.slice(size * pageIndex, size * pageIndex + 3)
+  console.log('list', list)
+
+  backClient(ctx, { list, total: all.length })
+}
+
+// 图片上传
+async function photoUpload(ctx) {
+  // const
+}
 module.exports = {
   login,
   test,
-  todayStep
+  todayStep,
+  getPhoto
 }
