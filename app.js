@@ -6,18 +6,24 @@ const bodyParser = require('koa-bodyparser')
 const cors = require('./utils/cors')
 const static = require('koa-static')
 const path = require('path')
-const {
-  getUploadDirName,
-  checkDirExist,
-  getUploadFileExt,
-  getUploadFileName
-} = require('./utils/file')
+const Router = require('koa-router')
+const rou = new Router()
+// const {
+//   getUploadDirName,
+//   checkDirExist,
+//   getUploadFileExt,
+//   getUploadFileName
+// } = require('./utils/file')
 
-app.use(static(path.join(__dirname)))
+// app.use(static(path.join(__dirname)))
 
 app.use(bodyParser())
 app.use(cors())
-router(app)
+rou.post('/photo', async ctx => {
+  ctx.body = '<h1>hello word</h1>'
+})
+app.use(rou.routes())
+// router(app)
 // app.use(
 //   koaBody({
 //     multipart: true, // 支持文件上传
@@ -43,6 +49,6 @@ router(app)
 //     }
 //   })
 // )
-app.listen(444, () => {
-  console.log('服务端口 444')
+app.listen(4444, () => {
+  console.log('服务端口 4444')
 })
