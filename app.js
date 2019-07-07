@@ -6,8 +6,6 @@ const bodyParser = require('koa-bodyparser')
 const cors = require('./utils/cors')
 // const static = require('koa-static')
 // const path = require('path')
-// const Router = require('koa-router')
-// const rou = new Router()
 // const {
 //   getUploadDirName,
 //   checkDirExist,
@@ -19,11 +17,14 @@ const cors = require('./utils/cors')
 
 app.use(bodyParser())
 app.use(cors())
-// router.post('/photo', async ctx => {
-//   ctx.body = '<h1>hello word</h1>'
-// })
-// app.use(routes())
-router(app)
+const Router = require('koa-router')
+
+const rou = new Router()
+router.post('/photo', async ctx => {
+  ctx.body = '<h1>hello word</h1>'
+})
+app.use(routes())
+// router(app)
 // app.use(
 //   koaBody({
 //     multipart: true, // 支持文件上传
