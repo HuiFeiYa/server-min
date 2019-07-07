@@ -13,6 +13,13 @@ const { getSession } = require('./business')
 const WXBizDataCrypt = require('./utils/WXBizDataCrypt')
 const { encode, decode } = require('./utils/crypto')
 const appId = 'wxc61d58d3c32c497e'
+const {
+  getUploadFileName,
+  getUploadFileExt,
+  checkDirExist,
+  getUploadDirName
+} = require('../utils/file')
+const path = require('path')
 // 登陆部分
 async function login(ctx) {
   const { code, data, iv, token } = ctx.request.body
@@ -67,11 +74,17 @@ async function getPhoto(ctx) {
 
 // 图片上传
 async function photoUpload(ctx) {
-  // const
+  const filename = ctx.request.files.file.name
+  const ext = getUploadFileExt(filename)
+  const paths = `uploads/${getUploadDirName()}/${getUploadFileName(ext)}`
+  backClient(ctx, paths)
 }
+
+// const
 module.exports = {
   login,
   test,
   todayStep,
-  getPhoto
+  getPhoto,
+  photoUpload
 }
