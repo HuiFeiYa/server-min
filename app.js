@@ -1,11 +1,11 @@
 const Koa = require('koa')
 const app = new Koa()
 const koaBody = require('koa-body')
-const router = require('./router')
+// const router = require('./router')
 const bodyParser = require('koa-bodyparser')
-const cors = require('./utils/cors')
-const static = require('koa-static')
-const path = require('path')
+// const cors = require('./utils/cors')
+// const static = require('koa-static')
+// const path = require('path')
 const Router = require('koa-router')
 const rou = new Router()
 // const {
@@ -17,8 +17,8 @@ const rou = new Router()
 
 // app.use(static(path.join(__dirname)))
 
-app.use(bodyParser())
-app.use(cors())
+// app.use(bodyParser())
+// app.use(cors())
 rou.post('/photo', async ctx => {
   ctx.body = '<h1>hello word</h1>'
 })
@@ -49,6 +49,6 @@ app.use(rou.routes())
 //     }
 //   })
 // )
-app.listen(4444, () => {
-  console.log('服务端口 4444')
+app.listen(8082, () => {
+  console.log('服务端口 8082')
 })
