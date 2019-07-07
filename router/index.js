@@ -1,11 +1,11 @@
 const Router = require('koa-router')
-// const {
-//   login,
-//   test,
-//   todayStep,
-//   getPhoto,
-//   photoUpload
-// } = require('./controller')
+const {
+  login,
+  test,
+  todayStep,
+  getPhoto,
+  photoUpload
+} = require('./controller')
 // const path = require('path')
 // const auth = require('../middlewares/index')
 const router = new Router()
@@ -39,8 +39,8 @@ module.exports = app => {
   // router.post('/login', auth, login)
   // router.post('/test', test)
   // router.post('/step/today', todayStep)
-  // router.post('/photo', getPhoto)
-  router.post('/photo', async ctx => {
+  router.post('/photo', getPhoto)
+  router.post('/word', async ctx => {
     ctx.body = '<h1>hello word</h1>'
   })
   // router.post('/upload', upload.single('avatar'), photoUpload)

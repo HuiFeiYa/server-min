@@ -19,7 +19,7 @@ const {
 
 app.use(bodyParser())
 app.use(cors())
-rou.post('/photo', async ctx => {
+rou.post('/hello', async ctx => {
   ctx.body = '<h1>hello word</h1>'
 })
 app.use(rou.routes())
