@@ -39,7 +39,10 @@ module.exports = app => {
   router.post('/login', auth, login)
   router.post('/test', test)
   router.post('/step/today', todayStep)
-  router.post('/photo', getPhoto)
+  // router.post('/photo', getPhoto)
+  router.post('/photo', async ctx => {
+    ctx.body = '<h1>hello word</h1>'
+  })
   router.post('/upload', upload.single('avatar'), photoUpload)
   app.use(router.routes())
 }
