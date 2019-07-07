@@ -12,6 +12,12 @@ const {
   getUploadFileExt,
   getUploadFileName
 } = require('./utils/file')
+
+app.use(static(path.join(__dirname)))
+
+app.use(bodyParser())
+app.use(cors())
+router(app)
 app.use(
   koaBody({
     multipart: true, // 支持文件上传
@@ -37,11 +43,6 @@ app.use(
     }
   })
 )
-app.use(static(path.join(__dirname)))
-
-app.use(bodyParser())
-app.use(cors())
-router(app)
 app.listen(444, () => {
   console.log('服务端口 444')
 })

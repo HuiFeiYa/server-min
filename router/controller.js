@@ -67,8 +67,6 @@ async function getPhoto(ctx) {
   const { pageIndex, size } = ctx.request.body
   const all = await findAllPhoto()
   const list = all.slice(size * pageIndex, size * pageIndex + 3)
-  console.log('list', list)
-
   backClient(ctx, { list, total: all.length })
 }
 
