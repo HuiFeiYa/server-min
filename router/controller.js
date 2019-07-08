@@ -72,12 +72,18 @@ async function getPhoto(ctx) {
 
 // 图片上传
 async function photoUpload(ctx) {
-  console.log('params', ctx.request.files)
+  const file = ctx.request.files.avatar
+  const filename = file.name
+    .split('.')
+    .slice(2)
+    .join('.')
+  const picPath = `https://nodefly.club:6002/${filename}`
+  console.log('params', filename, picPath)
   // const filename = ctx.request.files.file.name
 
   // const ext = getUploadFileExt(filename)
   // const paths = `uploads/${getUploadDirName()}/${getUploadFileName(ext)}`
-  backClient(ctx, '成功')
+  backClient(ctx, picPath)
 }
 
 // const
