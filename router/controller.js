@@ -72,12 +72,12 @@ async function getPhoto(ctx) {
 
 // 图片上传
 async function photoUpload(ctx) {
-  const filename = ctx.request.files.file.name
   console.log('params', ctx.request.files)
+  const filename = ctx.request.files.file.name
 
-  const ext = getUploadFileExt(filename)
-  const paths = `uploads/${getUploadDirName()}/${getUploadFileName(ext)}`
-  backClient(ctx, paths)
+  // const ext = getUploadFileExt(filename)
+  // const paths = `uploads/${getUploadDirName()}/${getUploadFileName(ext)}`
+  backClient(ctx, '成功')
 }
 
 // const
