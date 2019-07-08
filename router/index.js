@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
     (new Date().getMonth() + 1) +
     new Date().getDate(),
   filename: function(req, file, cb) {
-    const filename = file
+    const filename = file.originalname
       .split('.')
       .slice(2)
       .join()
