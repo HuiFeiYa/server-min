@@ -14,6 +14,7 @@ const { fillZero } = require('../utils/date')
 const multer = require('koa-multer')
 
 const storage = multer.diskStorage({
+  // 使用了 koaBody 该目录未生效
   destination:
     './' +
     new Date().getFullYear() +
