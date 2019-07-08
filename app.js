@@ -14,6 +14,10 @@ const {
 } = require('./utils/file')
 
 // app.use(static(path.join(__dirname)))
+
+app.use(bodyParser())
+app.use(cors())
+router(app)
 app.use(
   koaBody({
     multipart: true, // 支持文件上传
@@ -31,11 +35,12 @@ app.use(
         // 检查文件夹是否存在如果不存在则新建文件夹
         // checkDirExist(dir)
         // 重新覆盖 file.path 属性
-        console.log('file-----', file)
         const filename = file.name
           .split('.')
           .slice(2)
           .join('.')
+        console.log('file-----', filename)
+
         file.path = filename
       },
       onError: err => {
@@ -44,10 +49,6 @@ app.use(
     }
   })
 )
-app.use(bodyParser())
-app.use(cors())
-router(app)
-
 app.listen(8083, () => {
   console.log('服务端口 8083')
 })
