@@ -14,7 +14,7 @@ const {
 } = require('./utils/file')
 
 // app.use(static(path.join(__dirname)))
-
+app.use(koaBody({ multipart: true }))
 app.use(bodyParser())
 app.use(cors())
 router(app)
