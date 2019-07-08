@@ -72,7 +72,7 @@ async function getPhoto(ctx) {
 
 // 图片上传
 async function photoUpload(ctx) {
-  console.log('params', ctx.request.files)
+  console.log('params', ctx.request.body)
   // const filename = ctx.request.files.file.name
 
   // const ext = getUploadFileExt(filename)
