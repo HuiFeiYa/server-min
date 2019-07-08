@@ -83,7 +83,7 @@ async function photoUpload(ctx) {
 
   // const ext = getUploadFileExt(filename)
   // const paths = `uploads/${getUploadDirName()}/${getUploadFileName(ext)}`
-  backClient(ctx, picPath)
+  // backClient(ctx, picPath)
 }
 
 // const
