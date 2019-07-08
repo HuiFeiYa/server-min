@@ -17,19 +17,7 @@ const storage = multer.diskStorage({
     'uploads/' +
     new Date().getFullYear() +
     (new Date().getMonth() + 1) +
-    new Date().getDate(),
-  filename: function(req, file, cb) {
-    let fileFormat = file.name.split('.')
-    console.log('fileFormat', fileFormat)
-
-    let filename =
-      file.fieldname +
-      '-' +
-      Date.now() +
-      '.' +
-      fileFormat[fileFormat.length - 1]
-    cb(null, filename)
-  }
+    new Date().getDate()
 })
 
 const upload = multer({ storage })
