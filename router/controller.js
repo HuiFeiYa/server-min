@@ -73,7 +73,7 @@ async function getPhoto(ctx) {
 // 图片上传
 async function photoUpload(ctx) {
   console.log('params', ctx.request.files)
-  const filename = ctx.request.files.file.name
+  // const filename = ctx.request.files.file.name
 
   // const ext = getUploadFileExt(filename)
   // const paths = `uploads/${getUploadDirName()}/${getUploadFileName(ext)}`

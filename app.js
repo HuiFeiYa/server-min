@@ -29,13 +29,15 @@ app.use(
       onFileBegin: (name, file) => {
         // 文件上传前的设置
         // 获取文件后缀
-        const ext = getUploadFileExt(file.name)
-        // 最终要保存到的文件夹目录
-        const dir = path.join(__dirname, `uploads/${getUploadDirName()}`)
-        // 检查文件夹是否存在如果不存在则新建文件夹
-        checkDirExist(dir)
+        // const ext = getUploadFileExt(file.name)
+        // // 最终要保存到的文件夹目录
+        // const dir = path.join(__dirname, `uploads/${getUploadDirName()}`)
+        // // 检查文件夹是否存在如果不存在则新建文件夹
+        // checkDirExist(dir)
         // 重新覆盖 file.path 属性
-        file.path = `${dir}/${getUploadFileName(ext)}`
+        console.log('file', file)
+
+        file.path = 'my123.png'
       },
       onError: err => {
         console.log(err)
