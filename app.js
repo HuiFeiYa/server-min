@@ -36,7 +36,7 @@ app.use(
           .join('.')
         console.log('file-----', filename)
 
-        file.path = filename
+        file.path = 'uploads/' + filename
       },
       onError: err => {
         console.log(err)
