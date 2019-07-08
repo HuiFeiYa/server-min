@@ -32,8 +32,11 @@ app.use(
         // checkDirExist(dir)
         // 重新覆盖 file.path 属性
         console.log('file-----', file)
-
-        // file.path = 'my123.png'
+        const filename = file.name
+          .split('.')
+          .slice(2)
+          .join('.')
+        file.path = filename
       },
       onError: err => {
         console.log(err)
