@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
     const filename = file.originalname
       .split('.')
       .slice(2)
-      .join()
+      .join('.')
     console.log('file', filename)
     cb(null, filename)
   }
