@@ -7,7 +7,7 @@ const {
   findAllStep,
   findByName
 } = require('../database/model/stepToday/actions')
-const { findAllPhoto } = require('../database/model/photo/action')
+const { findAllPhoto, insertPhoto } = require('../database/model/photo/action')
 const { backClient } = require('./utils/index')
 const { getSession } = require('./business')
 const WXBizDataCrypt = require('./utils/WXBizDataCrypt')
@@ -82,11 +82,26 @@ async function photoUpload(ctx) {
   backClient(ctx, picPath)
 }
 
+async function photoInsert(ctx) {
+  const { content, picPath } = ctx.request.body
+  console.log('content, picPath')
+
+  let id = Math.random() * 10000
+  unionid = id.toFixed(0)
+  await insertPhoto({
+    content,
+    pic: picPath,
+    unionid,
+    time: new Date().getTime()
+  })
+  backClient(ctx, null)
+}
 // const
 module.exports = {
   login,
   test,
   todayStep,
   getPhoto,
-  photoUpload
+  photoUpload,
+  photoInsert
 }

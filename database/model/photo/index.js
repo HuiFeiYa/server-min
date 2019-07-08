@@ -13,7 +13,8 @@ const Model = instance(
     },
     pic: Sequelize.STRING(200),
     content: Sequelize.STRING(200),
-    time: Sequelize.STRING(200)
+    time: Sequelize.STRING(200),
+    unionid: Sequelize.BIGINT
   },
   { timestamps: false }
 )

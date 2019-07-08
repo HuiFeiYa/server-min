@@ -4,7 +4,8 @@ const {
   test,
   todayStep,
   getPhoto,
-  photoUpload
+  photoUpload,
+  photoInsert
 } = require('./controller')
 const path = require('path')
 const auth = require('../middlewares/index')
@@ -42,5 +43,6 @@ module.exports = app => {
     ctx.body = '<h1>hello word</h1>'
   })
   router.post('/upload', upload.single('avatar'), photoUpload)
+  router.post('/phot-add', photoInsert)
   app.use(router.routes())
 }
