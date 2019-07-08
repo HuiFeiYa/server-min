@@ -17,7 +17,7 @@ app.use(
     multipart: true, // 支持文件上传
     encoding: 'gzip',
     formidable: {
-      // uploadDir: path.join(__dirname, 'uploads'), // 设置文件上传目录
+      uploadDir: path.join(__dirname, 'uploads'), // 设置文件上传目录
       // keepExtensions: true, // 保持文件的后缀
       // maxFieldsSize: 2 * 1024 * 1024, // 文件上传大小
       onFileBegin: (name, file) => {
