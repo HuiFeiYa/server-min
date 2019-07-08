@@ -15,7 +15,7 @@ const multer = require('koa-multer')
 
 const storage = multer.diskStorage({
   destination:
-    'uploads/' +
+    './' +
     new Date().getFullYear() +
     fillZero(new Date().getMonth() + 1) +
     fillZero(new Date().getDate())
