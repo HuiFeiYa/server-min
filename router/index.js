@@ -9,6 +9,7 @@ const {
 const path = require('path')
 const auth = require('../middlewares/index')
 const router = new Router()
+const { fillZero } = require('../utils/date')
 
 const multer = require('koa-multer')
 
@@ -16,8 +17,8 @@ const storage = multer.diskStorage({
   destination:
     'uploads/' +
     new Date().getFullYear() +
-    (new Date().getMonth() + 1) +
-    new Date().getDate(),
+    fillZero(new Date().getMonth() + 1) +
+    fillZero(new Date().getDate()),
   filename: function(req, file, cb) {
     const filename = file.originalname
       .split('.')
