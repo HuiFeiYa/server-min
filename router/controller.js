@@ -66,7 +66,8 @@ async function todayStep(ctx) {
 async function getPhoto(ctx) {
   const { pageIndex, size } = ctx.request.body
   const all = await findAllPhoto()
-  const list = all.slice(size * pageIndex, size * pageIndex + 3)
+  const length = all.length
+  const list = all.slice(length - pageIndex * 3 - 3, length - pageIndex * 3)
   backClient(ctx, { list, total: all.length })
 }
 
