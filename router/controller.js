@@ -8,10 +8,11 @@ const {
   findByName
 } = require('../database/model/stepToday/actions')
 const { findAllPhoto, insertPhoto } = require('../database/model/photo/action')
-const { backClient } = require('./utils/index')
+const { backClient, dealUploadFile } = require('./utils/index')
 const { getSession } = require('./business')
 const WXBizDataCrypt = require('./utils/WXBizDataCrypt')
 const { encode, decode } = require('./utils/crypto')
+const connect = require('../database/utils/mysql')
 const appId = 'wxc61d58d3c32c497e'
 const {
   getUploadFileName,
@@ -20,6 +21,7 @@ const {
   getUploadDirName
 } = require('../utils/file')
 const path = require('path')
+const fs = require('fs')
 // 登陆部分
 async function login(ctx) {
   const { code, data, iv, token } = ctx.request.body
@@ -50,6 +52,26 @@ async function test() {
   const result = await findOne('id', 2)
 }
 
+// life 图片分享
+async function shareLife(ctx) {
+  const all = await connect('select * from  life ')
+  console.log(all)
+  backClient(ctx, all)
+}
+async function insertLife(ctx) {
+  const { pic, content } = ctx.request.body
+  console.log(
+    'pic',
+    `insert into life (pic,content) values(${pic},${content});`
+  )
+
+  await connect(`insert into life (pic,content) values('${pic}','${content}');`)
+  backClient(ctx, null)
+}
+// 采用fs写入流 ，将http传递的流写入的文件夹下
+async function uploadLife(ctx) {
+  dealUploadFile(ctx, 'https://nodefly.club:6002/')
+}
 // 每日步数
 async function todayStep(ctx) {
   const { username } = ctx.request.body
@@ -73,14 +95,7 @@ async function getPhoto(ctx) {
 
 // 图片上传
 async function photoUpload(ctx) {
-  const file = ctx.request.files.avatar
-  const filename = file.name
-    .split('.')
-    .slice(2)
-    .join('.')
-  const picPath = `https://nodefly.club:6002/${filename}`
-  console.log('params', ctx.request.files)
-  backClient(ctx, picPath)
+  dealUploadFile(ctx)
 }
 
 async function photoInsert(ctx) {
@@ -104,5 +119,8 @@ module.exports = {
   todayStep,
   getPhoto,
   photoUpload,
-  photoInsert
+  photoInsert,
+  shareLife,
+  insertLife,
+  uploadLife
 }

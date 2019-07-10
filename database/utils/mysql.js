@@ -13,6 +13,7 @@ module.exports = function(sql) {
       connection.query(sql, function(error, results, fields) {
         if (error) reject(error)
         resolve(results)
+        connection.release()
       })
     })
   })
