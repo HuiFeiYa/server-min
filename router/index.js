@@ -21,7 +21,7 @@ module.exports = app => {
   router.post('/test', test)
   router.post('/step/today', todayStep)
   router.post('/photo', getPhoto)
-  router.post('/photo-life', auth, shareLife)
+  router.post('/photo-life', shareLife)
   router.post('/life-add', auth, insertLife)
   router.post('/life-upload', koaBody({ multipart: true }), uploadLife)
   router.post('/upload', koaBody({ multipart: true }), photoUpload)
