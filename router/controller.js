@@ -54,16 +54,14 @@ async function test() {
 
 // life 图片分享
 async function shareLife(ctx) {
+  const { pageIndex, size } = ctx.request.body
   const all = await connect('select * from  life ')
-  console.log(all)
+  all.reverse()
+  const list = all.slice(size * pageIndex, size * pageIndex + 3)
   backClient(ctx, all)
 }
 async function insertLife(ctx) {
   const { pic, content } = ctx.request.body
-  console.log(
-    'pic',
-    `insert into life (pic,content) values(${pic},${content});`
-  )
 
   await connect(`insert into life (pic,content) values('${pic}','${content}');`)
   backClient(ctx, null)
@@ -100,8 +98,6 @@ async function photoUpload(ctx) {
 
 async function photoInsert(ctx) {
   const { content, picPath } = ctx.request.body
-  console.log('content, picPath')
-
   let id = Math.random() * 10000
   unionid = id.toFixed(0)
   await insertPhoto({
@@ -112,7 +108,7 @@ async function photoInsert(ctx) {
   })
   backClient(ctx, null)
 }
-// const
+
 module.exports = {
   login,
   test,
