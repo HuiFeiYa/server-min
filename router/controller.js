@@ -58,7 +58,7 @@ async function shareLife(ctx) {
   const all = await connect('select * from  life ')
   all.reverse()
   const list = all.slice(size * pageIndex, size * pageIndex + 3)
-  backClient(ctx, all)
+  backClient(ctx, { list, total: all.length })
 }
 async function insertLife(ctx) {
   const { pic, content } = ctx.request.body
@@ -69,6 +69,11 @@ async function insertLife(ctx) {
 // 采用fs写入流 ，将http传递的流写入的文件夹下
 async function uploadLife(ctx) {
   dealUploadFile(ctx, 'https://nodefly.club:6002/')
+}
+// 历史步数
+async function historyStep(ctx) {
+  const all = await connect('select * from history')
+  backClient(ctx, all)
 }
 // 每日步数
 async function todayStep(ctx) {
@@ -118,5 +123,6 @@ module.exports = {
   photoInsert,
   shareLife,
   insertLife,
-  uploadLife
+  uploadLife,
+  historyStep
 }
