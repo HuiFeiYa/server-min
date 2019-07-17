@@ -68,7 +68,7 @@ async function insertLife(ctx) {
 }
 // 采用fs写入流 ，将http传递的流写入的文件夹下
 async function uploadLife(ctx) {
-  dealUploadFile(ctx, 'https://nodefly.club:6002/')
+  dealUploadFile(ctx, 'https://nodefly.club/')
 }
 // 历史步数
 async function historyStep(ctx) {
