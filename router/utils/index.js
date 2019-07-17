@@ -10,7 +10,7 @@ const backClient = (ctx, data, code = 0, message = 'success') => {
     message
   }
 }
-const dealUploadFile = (ctx, prexPath = 'https://nodefly.club:6002/') => {
+const dealUploadFile = (ctx, prexPath = 'https://nodefly.club/') => {
   const file = ctx.request.files.avatar
   const etc = file.name.split('.').slice(-1)
   const time = new Date().getTime()
