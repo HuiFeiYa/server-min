@@ -21,6 +21,8 @@ const dealUploadFile = (ctx, prexPath = 'https://nodefly.club/') => {
     path.join(__dirname, `../../uploads/${filePath}`)
   )
   render.pipe(writer)
+  console.log('返回客户端的链接', prexPath + filePath)
+
   backClient(ctx, prexPath + filePath)
 }
 module.exports = {
