@@ -55,7 +55,7 @@ async function test() {
 // life 图片分享
 async function shareLife(ctx) {
   const { pageIndex, size } = ctx.request.body
-  const all = await connect('select * from  life ')
+  const all = await connect('select * from  life order by id')
   all.reverse()
   const list = all.slice(size * pageIndex, size * pageIndex + 3)
   backClient(ctx, { list, total: all.length })
@@ -90,7 +90,8 @@ async function todayStep(ctx) {
 // 照片分享
 async function getPhoto(ctx) {
   const { pageIndex, size } = ctx.request.body
-  const all = await findAllPhoto()
+  const all = await connect('select * from photos order by id')
+
   all.reverse()
   const list = all.slice(size * pageIndex, size * pageIndex + 3)
   backClient(ctx, { list, total: all.length })
