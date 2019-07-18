@@ -73,6 +73,20 @@ async function updateTimes(ctx) {
       starClick === undefined &&
       forkClick === undefined)
   ) {
+    if (Number(userid) !== id) {
+      backClient(ctx, {
+        view,
+        star,
+        fork,
+        isClick: 0,
+        isStarClick: 0,
+        isForkClick: 0
+      })
+      await connect(
+        `update times set isClick=${0},isStarClick=${0},isForkClick=${0},userid = ${userid} where id =1`
+      )
+      return
+    }
     backClient(ctx, { view, star, fork, isClick, isStarClick, isForkClick })
   } else {
     if (eyeClick !== undefined) {
