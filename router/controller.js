@@ -51,6 +51,78 @@ async function login(ctx) {
 async function test() {
   const result = await findOne('id', 2)
 }
+// 更新view star数
+async function updateTimes(ctx) {
+  // update times set userid = 122 where id =1;
+  const { userid, eyeClick, starClick, forkClick } = ctx.request.body
+
+  const all = await connect('select * from times ')
+  let {
+    view,
+    star,
+    fork,
+    userid: id,
+    isClick,
+    isStarClick,
+    isForkClick
+  } = all[0]
+
+  if (
+    Number(userid) !== id ||
+    (eyeClick === undefined &&
+      starClick === undefined &&
+      forkClick === undefined)
+  ) {
+    backClient(ctx, { view, star, fork, isClick, isStarClick, isForkClick })
+  } else {
+    if (eyeClick !== undefined) {
+      // 判断是否点击更新数据库中 是否点击状态和 view次数
+      const times = eyeClick === '0' ? ++view : --view
+      const isClick = eyeClick === '0' ? 1 : 0
+      await connect(
+        `update times set view=${times} ,isClick=${isClick},userid = ${userid} where id =1`
+      )
+      backClient(ctx, {
+        view: times,
+        star,
+        fork,
+        isClick,
+        isStarClick,
+        isForkClick
+      })
+      // 更新star的次数 和点击状态
+    } else if (starClick !== undefined) {
+      const times1 = starClick === '0' ? ++star : --star
+      const isStarClick = starClick === '0' ? 1 : 0
+      await connect(
+        `update times set star=${times1} ,isStarClick=${isStarClick},userid = ${userid} where id =1`
+      )
+      backClient(ctx, {
+        view,
+        star: times1,
+        fork,
+        isClick,
+        isStarClick,
+        isForkClick
+      })
+      // 更新 fork的状态 和点击次数
+    } else if (forkClick !== undefined) {
+      const times2 = forkClick === '0' ? ++fork : --fork
+      const isForkClick = forkClick === '0' ? 1 : 0
+      await connect(
+        `update times set fork=${times2} ,isForkClick=${isForkClick},userid = ${userid} where id =1`
+      )
+      backClient(ctx, {
+        view,
+        star,
+        fork: times2,
+        isClick,
+        isStarClick,
+        isForkClick
+      })
+    }
+  }
+}
 
 // life 图片分享
 async function shareLife(ctx) {
@@ -125,5 +197,6 @@ module.exports = {
   shareLife,
   insertLife,
   uploadLife,
-  historyStep
+  historyStep,
+  updateTimes
 }

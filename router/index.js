@@ -9,7 +9,8 @@ const {
   shareLife,
   insertLife,
   uploadLife,
-  historyStep
+  historyStep,
+  updateTimes
 } = require('./controller')
 const path = require('path')
 const auth = require('../middlewares/index')
@@ -28,5 +29,6 @@ module.exports = app => {
   router.post('/upload', koaBody({ multipart: true }), photoUpload)
   router.post('/phot-add', photoInsert)
   router.post('/history', historyStep)
+  router.post('/times', updateTimes)
   app.use(router.routes())
 }
