@@ -30,5 +30,11 @@ module.exports = app => {
   router.post('/phot-add', photoInsert)
   router.post('/history', historyStep)
   router.post('/times', updateTimes)
+  router.post('/show', async ctx => {
+    ctx.body = {
+      code: 0,
+      data: false
+    }
+  })
   app.use(router.routes())
 }
