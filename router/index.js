@@ -10,7 +10,8 @@ const {
   insertLife,
   uploadLife,
   historyStep,
-  updateTimes
+  updateTimes,
+  makeupList
 } = require('./controller')
 const path = require('path')
 const auth = require('../middlewares/index')
@@ -30,6 +31,7 @@ module.exports = app => {
   router.post('/phot-add', photoInsert)
   router.post('/history', historyStep)
   router.post('/times', updateTimes)
+  router.post('/makeup', makeupList)
   router.post('/show', async ctx => {
     ctx.body = {
       code: 0,

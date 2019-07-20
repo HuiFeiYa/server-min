@@ -51,6 +51,11 @@ async function login(ctx) {
 async function test() {
   const result = await findOne('id', 2)
 }
+// 返回化妆品图片
+async function makeupList(ctx) {
+  const all = await connect('select * from makeup order by id')
+  backClient(ctx, all)
+}
 // 更新view star数
 async function updateTimes(ctx) {
   // update times set userid = 122 where id =1;
@@ -212,5 +217,6 @@ module.exports = {
   insertLife,
   uploadLife,
   historyStep,
-  updateTimes
+  updateTimes,
+  makeupList
 }
