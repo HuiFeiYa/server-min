@@ -35,7 +35,7 @@ module.exports = app => {
   router.post('/show', async ctx => {
     ctx.body = {
       code: 0,
-      data: false
+      data: true
     }
   })
   app.use(router.routes())
