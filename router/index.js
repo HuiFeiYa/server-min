@@ -32,7 +32,9 @@ module.exports = app => {
   router.post('/history', historyStep)
   router.post('/times', updateTimes)
   router.post('/makeup', makeupList)
-  router.post('/show', async ctx => {
+  router.get('/show', async ctx => {
+    console.log('params:', ctx.request)
+
     ctx.body = {
       code: 0,
       data: true
