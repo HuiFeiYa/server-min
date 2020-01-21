@@ -12,11 +12,13 @@ const backClient = (ctx, data, code = 0, message = 'success') => {
 }
 const dealUploadFile = (ctx, prexPath = 'https://nodefly.club/') => {
   const file = ctx.request.files.avatar
-  const etc = file.name.split('.').slice(-1)
+  // 格式如 .md .html
+  const etc = path.extname(file.name)
+  // 获取文件名
+  const flieName  = path.basename(file.name,etc)
   const time = new Date().getTime()
   const render = fs.createReadStream(file.path)
-  const filePath = `${time}.${etc}`
-
+  const filePath = flieName + time  + etc
   const writer = fs.createWriteStream(
     path.join(__dirname, `../../uploads/${filePath}`)
   )

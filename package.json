@@ -11,5 +11,8 @@
     "path": "^0.12.7",
     "request": "^2.88.0",
     "sequelize": "^5.9.0"
+  },
+  "scripts":{
+    "start":"pm2 start app.js --watch"
   }
 }

@@ -48,8 +48,9 @@ async function login(ctx) {
   await insertLogin({ openid, gender, avatarUrl, unionid, timestamp, nickName })
   backClient(ctx, encryption)
 }
-async function test() {
-  const result = await findOne('id', 2)
+async function test(ctx) {
+  const result = await connect('select * from history')
+  ctx.body = result
 }
 // 返回化妆品图片
 async function makeupList(ctx) {
